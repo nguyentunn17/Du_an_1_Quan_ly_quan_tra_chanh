@@ -65,7 +65,7 @@ public class Main extends javax.swing.JFrame {
                     main.showForm(new viewThongKe());
                     break;
                 case 7:
-                    int check = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn thoát ?", "Phần mềm bán hàng trà chanh", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                    int check = JOptionPane.showConfirmDialog(this, "Bạn đã thống kê doanh thu chưa?", "Phần mềm bán hàng trà chanh", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                     if (check == JOptionPane.YES_OPTION) {
                         System.exit(0);
                     }

@@ -12,19 +12,18 @@ public class Ban {
     private String id;
     private String maBan;
     private String tenBan;
+    private int soNguoi;
+    private int trangThai;
 
     public Ban() {
     }
 
-    public Ban(String id, String maBan, String tenBan) {
+    public Ban(String id, String maBan, String tenBan, int soNguoi, int trangThai) {
         this.id = id;
         this.maBan = maBan;
         this.tenBan = tenBan;
-    }
-
-    public Ban(String maBan, String tenBan) {
-        this.maBan = maBan;
-        this.tenBan = tenBan;
+        this.soNguoi = soNguoi;
+        this.trangThai = trangThai;
     }
 
     public String getId() {
@@ -51,9 +50,23 @@ public class Ban {
         this.tenBan = tenBan;
     }
 
-    public String getId(String ma) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public int getSoNguoi() {
+        return soNguoi;
     }
+
+    public void setSoNguoi(int soNguoi) {
+        this.soNguoi = soNguoi;
+    }
+
+    public int getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(int trangThai) {
+        this.trangThai = trangThai;
+    }
+
+    
 
     
 }
