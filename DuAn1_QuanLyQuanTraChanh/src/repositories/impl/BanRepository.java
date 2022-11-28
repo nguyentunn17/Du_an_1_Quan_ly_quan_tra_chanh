@@ -35,7 +35,9 @@ public class BanRepository implements IBanRepository {
                 String id = rs.getString("id");
                 String maca = rs.getString("MaBan");
                 String tenca = rs.getString("TenBan");
-                Ban b = new Ban(id, maca, tenca);
+                int soNguoi = rs.getInt("SoNguoi");
+                int trangThai = rs.getInt("TrangThai");
+                Ban b = new Ban(id, maca, tenca, soNguoi, trangThai);
                 listBan.add(b);
             }
         } catch (SQLException ex) {
@@ -50,10 +52,12 @@ public class BanRepository implements IBanRepository {
     public boolean insert(Ban b) {
         try {
             Connection conn = jdbcUtil.getConnection();
-            String insert = "insert into Ban" + "(MaBan,TenBan)" + "Values(?,?)";
+            String insert = "insert into Ban" + "(MaBan,TenBan,SoNguoi,TrangThai)" + "Values(?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(insert);
             ps.setString(1, b.getMaBan());
             ps.setString(2, b.getTenBan());
+            ps.setInt(3,b.getSoNguoi());
+            ps.setInt(4,b.getTrangThai());
             ps.execute();
         } catch (Exception e) {
             e.printStackTrace();
@@ -65,11 +69,13 @@ public class BanRepository implements IBanRepository {
     public boolean Update(String id, Ban b) {
         try {
             Connection conn = jdbcUtil.getConnection();
-            String Update = "update Ban set MaBan=?,TenBan=? Where id=?";
+            String Update = "update Ban set MaBan=?,TenBan=?,SoNguoi=?,TrangThai=? Where id=?";
             PreparedStatement ps = conn.prepareStatement(Update);
-            ps.setString(3, id);
+            ps.setString(5, id);
             ps.setString(1, b.getMaBan());
             ps.setString(2, b.getTenBan());
+            ps.setInt(3, b.getSoNguoi());
+            ps.setInt(4, b.getTrangThai());
             ps.execute();
         } catch (Exception e) {
             e.printStackTrace();
