@@ -3,13 +3,16 @@ package views;
 import domainmodels.HoaDon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import services.HoaDonSV;
 import services.HoaDon_sv;
+import services.impl.HoaDonSVimpl;
 import services.impl.HoaDon_Imlp;
+import viewModel.HoaDonVM;
 
 public class viewHoaDon extends javax.swing.JPanel {
 
     private DefaultTableModel defaultTableModel;
-    private HoaDon_sv hoaDon_sv = new HoaDon_Imlp();
+    private HoaDonSV hdsvvm=new HoaDonSVimpl();
 
     public viewHoaDon() {
         initComponents();
@@ -40,20 +43,18 @@ public class viewHoaDon extends javax.swing.JPanel {
 //    }
 
     public void loatTable() {
-        defaultTableModel = (DefaultTableModel) this.tbl_hoadon.getModel();
+        defaultTableModel = (DefaultTableModel) this.tb_hoadon.getModel();
         defaultTableModel.setRowCount(0);
-        for (HoaDon hoaDon : this.hoaDon_sv.getAll()) {
+        for (HoaDonVM hdvm : hdsvvm.getlist()) {
             Object[] rowdata = {
-                hoaDon.getId(),
-                hoaDon.getMa(),
-                hoaDon.getNgaytao(),
-                hoaDon.getNgaythanhtoan(), 
-                hoaDon.getNgayship(), 
-                hoaDon.getNgaynhap(), 
-                hoaDon.getTrangthai(), 
-                hoaDon.getTen(), 
-                hoaDon.getDiachi(), 
-                hoaDon.getSdt()
+                hdvm.getMahd(),
+                hdvm.getNgayTao(),
+                hdvm.getNguoitao(),
+                hdvm.getTenkh(),
+                hdvm.getDiachi(),
+                hdvm.getTongtien(),
+                hdvm.getSdtnguoinhan(),
+                hdvm.getTrangthai()
 
             };
             defaultTableModel.addRow(rowdata);
@@ -62,59 +63,85 @@ public class viewHoaDon extends javax.swing.JPanel {
 
     }
 
-    private String getid(String ma) {
-        for (HoaDon hoaDon : this.hoaDon_sv.getAll()) {
-            if (hoaDon.getMa().equals(ma)) {
-                return hoaDon.getId();
-            }
-        }
-        return null;
-    }
+   
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jScrollPane2 = new javax.swing.JScrollPane();
-        tbl_hoadon = new com.raven.swing.table.Table();
+        tb_hoadon = new com.raven.swing.table.Table();
+        btn_thongke = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        txt_tk = new javax.swing.JTextField();
+        btn_tk = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setOpaque(false);
 
-        tbl_hoadon.setModel(new javax.swing.table.DefaultTableModel(
+        tb_hoadon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "MaHD", "NgayTao", "NguoiTao", "TenKH", "DiaChi", "TongTien", "SDTNguoiNhan", "PhanTramgg", "TrangThai"
             }
         ));
-        jScrollPane2.setViewportView(tbl_hoadon);
+        jScrollPane2.setViewportView(tb_hoadon);
+
+        btn_thongke.setText("THỐNG KÊ");
+        btn_thongke.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_thongkeActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Trạng thái:");
+
+        btn_tk.setText("TÌM KIẾM");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(434, Short.MAX_VALUE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(177, 177, 177)
+                .addComponent(jLabel1)
+                .addGap(30, 30, 30)
+                .addComponent(txt_tk, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(btn_tk)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
+                .addComponent(btn_thongke)
+                .addGap(143, 143, 143))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(78, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_thongke)
+                    .addComponent(jLabel1)
+                    .addComponent(txt_tk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_tk))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_thongkeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_thongkeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_thongkeActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_thongke;
+    private javax.swing.JButton btn_tk;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private com.raven.swing.table.Table tbl_hoadon;
+    private com.raven.swing.table.Table tb_hoadon;
+    private javax.swing.JTextField txt_tk;
     // End of variables declaration//GEN-END:variables
 }
