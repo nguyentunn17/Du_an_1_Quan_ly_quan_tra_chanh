@@ -19,14 +19,15 @@ public class NhanVien {
     private Date ngaySinh;
     private String diaChi;
     private String sdt;
+    private String matKhau;
     private int trangThai;
     private String anh;
-    private String idLuong;
+    private String idCV;
 
     public NhanVien() {
     }
 
-    public NhanVien(String id, String ma, String hoTen, String gioiTinh, Date ngaySinh, String diaChi, String sdt, int trangThai, String anh, String idLuong) {
+    public NhanVien(String id, String ma, String hoTen, String gioiTinh, Date ngaySinh, String diaChi, String sdt, String matKhau, int trangThai, String anh, String idCV) {
         this.id = id;
         this.ma = ma;
         this.hoTen = hoTen;
@@ -34,9 +35,10 @@ public class NhanVien {
         this.ngaySinh = ngaySinh;
         this.diaChi = diaChi;
         this.sdt = sdt;
+        this.matKhau = matKhau;
         this.trangThai = trangThai;
         this.anh = anh;
-        this.idLuong = idLuong;
+        this.idCV = idCV;
     }
 
     public String getId() {
@@ -95,6 +97,14 @@ public class NhanVien {
         this.sdt = sdt;
     }
 
+    public String getMatKhau() {
+        return matKhau;
+    }
+
+    public void setMatKhau(String matKhau) {
+        this.matKhau = matKhau;
+    }
+
     public int getTrangThai() {
         return trangThai;
     }
@@ -111,12 +121,12 @@ public class NhanVien {
         this.anh = anh;
     }
 
-    public String getIdLuong() {
-        return idLuong;
+    public String getIdCV() {
+        return idCV;
     }
 
-    public void setIdLuong(String idLuong) {
-        this.idLuong = idLuong;
+    public void setIdCV(String idCV) {
+        this.idCV = idCV;
     }
 
    

@@ -34,13 +34,13 @@ public class QLNVImpl implements QLNVServices {
     }
 
     @Override
-    public void update(String ma, NhanVien nv) {
-        qLNVRepo.update(ma, nv);
+    public void update(String id, NhanVien nv) {
+        qLNVRepo.update(id, nv);
     }
 
     @Override
-    public void delete(String ma) {
-        qLNVRepo.delete(ma);
+    public void delete(String id) {
+        qLNVRepo.delete(id);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class QLNVImpl implements QLNVServices {
     }
 
     @Override
-    public ArrayList<NhanVien> listSearch(String ma) {
+    public ArrayList<NhanVienVMD> listSearch(String ma) {
         return qLNVRepo.list(ma);
     }
 

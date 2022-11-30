@@ -19,11 +19,11 @@ public interface QLNVServices {
 
     void insert(NhanVien nv);
 
-    void update(String ma, NhanVien nv);
+    void update(String id, NhanVien nv);
 
-    void delete(String ma);
+    void delete(String id);
     
     ArrayList<NhanVienVMD>listViewMoDel();
     
-    ArrayList<NhanVien>listSearch(String ma);
+    ArrayList<NhanVienVMD>listSearch(String ma);
 }

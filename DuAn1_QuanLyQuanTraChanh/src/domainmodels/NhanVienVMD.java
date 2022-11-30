@@ -19,23 +19,25 @@ public class NhanVienVMD {
     private Date ngaySinh;
     private String diaChi;
     private String sdt;
+    private String matKhau;
     private int trangThai;
     private String anh;
-    private double luong;
+    private String chucVu;
 
     public NhanVienVMD() {
     }
 
-    public NhanVienVMD(String ma, String hoTen, String gioiTinh, Date ngaySinh, String diaChi, String sdt, int trangThai, String anh, double luong) {
+    public NhanVienVMD(String ma, String hoTen, String gioiTinh, Date ngaySinh, String diaChi, String sdt, String matKhau, int trangThai, String anh, String chucVu) {
         this.ma = ma;
         this.hoTen = hoTen;
         this.gioiTinh = gioiTinh;
         this.ngaySinh = ngaySinh;
         this.diaChi = diaChi;
         this.sdt = sdt;
+        this.matKhau = matKhau;
         this.trangThai = trangThai;
         this.anh = anh;
-        this.luong = luong;
+        this.chucVu = chucVu;
     }
 
     public String getMa() {
@@ -86,6 +88,14 @@ public class NhanVienVMD {
         this.sdt = sdt;
     }
 
+    public String getMatKhau() {
+        return matKhau;
+    }
+
+    public void setMatKhau(String matKhau) {
+        this.matKhau = matKhau;
+    }
+
     public int getTrangThai() {
         return trangThai;
     }
@@ -102,14 +112,13 @@ public class NhanVienVMD {
         this.anh = anh;
     }
 
-    public double getLuong() {
-        return luong;
+    public String getChucVu() {
+        return chucVu;
     }
 
-    public void setLuong(double luong) {
-        this.luong = luong;
+    public void setChucVu(String chucVu) {
+        this.chucVu = chucVu;
     }
 
-  
     
 }

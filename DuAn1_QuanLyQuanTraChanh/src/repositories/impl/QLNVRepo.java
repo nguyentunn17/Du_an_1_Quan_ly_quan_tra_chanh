@@ -4,7 +4,6 @@
  */
 package repositories.impl;
 
-
 import domainmodels.NhanVien;
 import domainmodels.NhanVienVMD;
 import java.sql.Connection;
@@ -38,10 +37,11 @@ public class QLNVRepo {
                 Date ngaySinh = rs.getDate("ngaysinh");
                 String diaChi = rs.getString("diachi");
                 String sdt = rs.getString("sdt");
+                String matKhau = rs.getString("matkhau");
                 int trangThai = rs.getInt("trangThai");
                 String anh = rs.getString("anh");
-                String idLuong = rs.getString("idluong");
-                NhanVien nv = new NhanVien(id, ma, ten, gioiTinh, ngaySinh, diaChi, sdt, trangThai, anh, idLuong);
+                String idcv = rs.getString("idcv");
+                NhanVien nv = new NhanVien(id, ma, ten, gioiTinh, ngaySinh, diaChi, sdt, matKhau, trangThai, anh, idcv);
                 list.add(nv);
             }
         } catch (Exception ex) {
@@ -54,48 +54,52 @@ public class QLNVRepo {
         try {
             Connection conn = jdbcUtil.getConnection();
             String sql = "insert into nhanvien "
-                    + "(ma,ten,gioitinh,ngaysinh,diachi,sdt,trangthai,anh)"
-                    + "values(?,?,?,?,?,?,?,?)";
+                    + "(ma,ten,gioitinh,ngaysinh,diachi,sdt,matkhau,trangthai,anh,idcv)"
+                    + "values(?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, nv.getMa());
             ps.setString(2, nv.getHoTen());
             ps.setString(3, nv.getGioiTinh());
-            ps.setDate(4,new java.sql.Date(nv.getNgaySinh().getTime()));
+            ps.setDate(4, new java.sql.Date(nv.getNgaySinh().getTime()));
             ps.setString(5, nv.getDiaChi());
             ps.setString(6, nv.getSdt());
-            ps.setInt(7, nv.getTrangThai());
-            ps.setString(8, nv.getAnh());
+            ps.setString(7, nv.getMatKhau());
+            ps.setInt(8, nv.getTrangThai());
+            ps.setString(9, nv.getAnh());
+            ps.setString(10, nv.getIdCV());
             ps.execute();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
-    public void update(String ma, NhanVien nv) {
+    public void update(String id, NhanVien nv) {
         try {
             Connection conn = jdbcUtil.getConnection();
-            String sql = "update nhanvien set ten=?,gioitinh=?,ngaysinh=?,diachi=?,sdt=?,trangthai=?,anh=? where ma =?";
+            String sql = "update nhanvien set ma=?, ten=?,gioitinh=?,ngaysinh=?,diachi=?,sdt=?,trangthai=?,anh=? where id =?";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, nv.getHoTen());
-            ps.setString(2, nv.getGioiTinh());
-            ps.setDate(3, new java.sql.Date(nv.getNgaySinh().getTime()));
-            ps.setString(4, nv.getDiaChi());
-            ps.setString(5, nv.getSdt());
-            ps.setInt(6, nv.getTrangThai());
-            ps.setString(7, nv.getAnh());
-            ps.setString(8, ma);
+            ps.setString(1, nv.getMa());
+            ps.setString(2, nv.getHoTen());
+            ps.setString(3, nv.getGioiTinh());
+            ps.setDate(4, new java.sql.Date(nv.getNgaySinh().getTime()));
+            ps.setString(5, nv.getDiaChi());
+            ps.setString(6, nv.getSdt());
+            ps.setString(7, nv.getMatKhau());
+            ps.setInt(8, nv.getTrangThai());
+            ps.setString(9, nv.getAnh());
+            ps.setString(10, id);
             ps.execute();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
-    public void delete(String ma) {
+    public void delete(String id) {
         try {
             Connection conn = jdbcUtil.getConnection();
-            String sql = "delete nhanvien where ma=?";
+            String sql = "delete nhanvien where id=?";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, ma);
+            ps.setString(1, id);
             ps.execute();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -106,7 +110,7 @@ public class QLNVRepo {
         ArrayList<NhanVienVMD> listView = new ArrayList<>();
         try {
             Connection conn = jdbcUtil.getConnection();
-            String sql = "select luong.mucluong, nhanvien.ma,nhanvien.ten,nhanvien.gioitinh,nhanvien.ngaysinh,nhanvien.diachi,nhanvien.sdt,nhanvien.trangthai,nhanvien.anh from luong inner join nhanvien on nhanvien.idluong = luong.id";
+            String sql = "select chucvu.tencv, nhanvien.ma,nhanvien.ten,nhanvien.gioitinh,nhanvien.ngaysinh,nhanvien.diachi,nhanvien.sdt,nhanvien.matkhau,nhanvien.trangthai,nhanvien.anh from chucvu inner join nhanvien on nhanvien.idcv = chucvu.id";
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -116,20 +120,21 @@ public class QLNVRepo {
                 Date ngaySinh = rs.getDate("ngaysinh");
                 String diaChi = rs.getString("diachi");
                 String sdt = rs.getString("sdt");
+                String matKhau = rs.getString("matkhau");
                 int trangThai = rs.getInt("trangThai");
                 String anh = rs.getString("anh");
-                double luong = rs.getDouble("luong");
-                NhanVienVMD nhanVienVMD = new NhanVienVMD(ma, ten, gioiTinh, ngaySinh, diaChi, sdt, trangThai, anh, luong);
-                listView.add(nhanVienVMD);
+                String chucVu = rs.getString("tencv");
+                NhanVienVMD nvvmd = new NhanVienVMD(ma, ten, gioiTinh, ngaySinh, diaChi, sdt, matKhau, trangThai, anh, chucVu);
+                listView.add(nvvmd);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
         return listView;
     }
-    
-    public ArrayList<NhanVien>list(String ma){
-         ArrayList<NhanVien> listSearch = new ArrayList<>();
+
+    public ArrayList<NhanVienVMD> list(String ma) {
+        ArrayList<NhanVienVMD> listSearch = new ArrayList<>();
         try {
             Connection conn = jdbcUtil.getConnection();
             String sql = "select * from nhanvien where ma like ?";
@@ -138,17 +143,17 @@ public class QLNVRepo {
             ps.executeQuery();
             ResultSet rs = ps.getResultSet();
             while (rs.next()) {
-                String id = rs.getString("id");
                 String ma1 = rs.getString("ma");
                 String ten = rs.getString("ten");
                 String gioiTinh = rs.getString("gioitinh");
                 Date ngaySinh = rs.getDate("ngaysinh");
                 String diaChi = rs.getString("diachi");
                 String sdt = rs.getString("sdt");
+                String matKhau = rs.getString("matkhau");
                 int trangThai = rs.getInt("trangThai");
                 String anh = rs.getString("anh");
-                String idLuong = rs.getString("idluong");
-                NhanVien nv = new NhanVien(id, ma1, ten, gioiTinh, ngaySinh, diaChi, sdt, trangThai, anh, idLuong);
+                String chucVu = rs.getString("tencv");
+                NhanVienVMD nv = new NhanVienVMD(ma1, ten, gioiTinh, ngaySinh, diaChi, sdt, matKhau, trangThai, anh, chucVu); 
                 listSearch.add(nv);
             }
         } catch (Exception ex) {

@@ -9,15 +9,25 @@ package domainmodels;
  * @author Quang
  */
 public class ChucVu {
+    private String id;
     private String maCV;
     private String tenCV;
 
     public ChucVu() {
     }
 
-    public ChucVu(String maCV, String tenCV) {
+    public ChucVu(String id, String maCV, String tenCV) {
+        this.id = id;
         this.maCV = maCV;
         this.tenCV = tenCV;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getMaCV() {
@@ -36,5 +46,6 @@ public class ChucVu {
         this.tenCV = tenCV;
     }
 
+   
    
 }

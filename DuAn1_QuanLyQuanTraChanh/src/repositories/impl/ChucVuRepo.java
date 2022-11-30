@@ -34,7 +34,7 @@ public class ChucVuRepo {
                 String id = rs.getString(1);
                 String ma = rs.getString(2);
                 String ten = rs.getString(3);
-                ChucVu cv = new ChucVu(ma, ten);
+                ChucVu cv = new ChucVu(id, ma, ten);
                 list.add(cv);
             }
         } catch (Exception ex) {
