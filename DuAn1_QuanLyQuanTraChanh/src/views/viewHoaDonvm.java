@@ -7,7 +7,7 @@ package views;
 import javax.swing.table.DefaultTableModel;
 import services.HoaDonSV;
 import services.impl.HoaDonSVimpl;
-import viewModel.HoaDonVM;
+import viewmodels.HoaDonVM;
 
 /**
  *

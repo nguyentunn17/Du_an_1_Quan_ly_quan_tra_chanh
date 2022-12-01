@@ -7,7 +7,7 @@ import services.HoaDonSV;
 import services.HoaDon_sv;
 import services.impl.HoaDonSVimpl;
 import services.impl.HoaDon_Imlp;
-import viewModel.HoaDonVM;
+import viewmodels.HoaDonVM;
 
 public class viewHoaDon extends javax.swing.JPanel {
 

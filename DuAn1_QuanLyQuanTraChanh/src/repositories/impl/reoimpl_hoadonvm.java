@@ -6,7 +6,7 @@ package repositories.impl;
 
 import java.util.ArrayList;
 import repositories.reo_hoadonvn;
-import viewModel.HoaDonVM;
+import viewmodels.HoaDonVM;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

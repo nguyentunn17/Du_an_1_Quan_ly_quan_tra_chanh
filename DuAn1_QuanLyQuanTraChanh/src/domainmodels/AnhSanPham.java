@@ -19,6 +19,13 @@ public class AnhSanPham {
         this.trangThai = trangThai;
     }
 
+    public AnhSanPham(String idSP, String tenAnh, String duongDan, Integer trangThai) {
+        this.idSP = idSP;
+        this.tenAnh = tenAnh;
+        this.duongDan = duongDan;
+        this.trangThai = trangThai;
+    }
+
     public String getId() {
         return id;
     }
