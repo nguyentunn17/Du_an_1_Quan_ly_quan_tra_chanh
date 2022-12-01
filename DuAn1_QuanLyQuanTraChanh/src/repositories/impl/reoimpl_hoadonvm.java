@@ -28,11 +28,13 @@ public class reoimpl_hoadonvm implements reo_hoadonvn{
         ArrayList<HoaDonVM> listhdvm =new ArrayList<>();
         try{
             Connection conn=jdbcUtil.getConnection();
-            String sql="select X.Ma,A.NgayTao,B.NguoiTao,C.Ten,C.DiaChi,D.ThanhTien,C.Sdt,D.TrangThai "
-                    + "from HOADON X join HINHTHUCTHANHTOAN on X.Id=A.IdHD "
-                    + "join NHANVIEN B on B.Id=X.IdNV \n"
-                    + "join KHACHHANG C on C.Id=X.IdKH \n"
-                    + "join HOADONCHITIET D on X.Id=D.IdHoaDon";
+            String sql="SELECT dbo.HOADON.MaHD,dbo.HINHTHUCTHANHTOAN.NgayTao,dbo.NHANVIEN.Ten,dbo.KHACHHANG.Ten,\n" +
+"dbo.KHACHHANG.DiaChi,dbo.HOADONCHITIET.ThanhTien,dbo.KHACHHANG.Sdt,dbo.HINHTHUCTHANHTOAN.TrangThai\n" +
+"FROM   dbo.HINHTHUCTHANHTOAN INNER JOIN\n" +
+"             dbo.HOADON ON dbo.HINHTHUCTHANHTOAN.IdHD = dbo.HOADON.Id INNER JOIN\n" +
+"             dbo.HOADONCHITIET ON dbo.HOADON.Id = dbo.HOADONCHITIET.IdHD INNER JOIN\n" +
+"             dbo.KHACHHANG ON dbo.HOADON.IdKH = dbo.KHACHHANG.Id INNER JOIN\n" +
+"             dbo.NHANVIEN ON dbo.HINHTHUCTHANHTOAN.IdNV = dbo.NHANVIEN.Id AND dbo.HOADON.IdNV = dbo.NHANVIEN.Id";
             PreparedStatement pre = conn.prepareStatement(sql);
             pre.execute();
             ResultSet rs=pre.getResultSet();
