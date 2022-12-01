@@ -8,6 +8,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.Icon;
@@ -91,7 +93,7 @@ public class viewNhanVien extends javax.swing.JPanel {
         String mk = tbNhanVien.getValueAt(row, 6).toString();
         String trangThai = tbNhanVien.getValueAt(row, 7).toString();
         String diaChi = tbNhanVien.getValueAt(row, 8).toString();
-        String anh = tbNhanVien.getValueAt(row, 9).toString();
+        String anh = tbNhanVien.getValueAt(row, 9).toString();   
         String idCV = "";
         for (ChucVu cv1 : cvs.listAll()) {
             if (cv.trim().equals(cv1.getTenCV().trim()) == true) {
@@ -209,6 +211,7 @@ public class viewNhanVien extends javax.swing.JPanel {
         cbbChucVu = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         btnXoa = new javax.swing.JButton();
+        btnChucVu = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbNhanVien = new com.raven.swing.table.Table();
@@ -330,12 +333,19 @@ public class viewNhanVien extends javax.swing.JPanel {
             }
         });
 
+        btnChucVu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/plus-6-24.png"))); // NOI18N
+        btnChucVu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChucVuActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(27, 27, 27)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(291, 291, 291)
@@ -346,7 +356,7 @@ public class viewNhanVien extends javax.swing.JPanel {
                         .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(95, 95, 95)
                         .addComponent(btnclear, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(240, Short.MAX_VALUE))
+                        .addContainerGap(226, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
@@ -359,7 +369,7 @@ public class viewNhanVien extends javax.swing.JPanel {
                                     .addGap(21, 21, 21)
                                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                            .addGap(0, 3, Short.MAX_VALUE)
+                                            .addGap(0, 2, Short.MAX_VALUE)
                                             .addComponent(rdDangLam)
                                             .addGap(97, 97, 97)
                                             .addComponent(rdDaNghi)
@@ -393,11 +403,13 @@ public class viewNhanVien extends javax.swing.JPanel {
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jScrollPane1)
                                     .addComponent(txtPass))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(40, 40, 40))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(cbbChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(38, 38, 38)
+                                .addComponent(btnChucVu)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
         jPanel4Layout.setVerticalGroup(
@@ -444,7 +456,8 @@ public class viewNhanVien extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cbbChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
+                            .addComponent(jLabel1)
+                            .addComponent(btnChucVu))
                         .addGap(48, 48, 48)))
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnclear, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -608,21 +621,45 @@ public class viewNhanVien extends javax.swing.JPanel {
     }//GEN-LAST:event_lblImageMouseClicked
 
     private void tbNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbNhanVienMouseClicked
-        // TODO add your handling code here:
-        int row = tbNhanVien.getSelectedRow();
-        txtMaNV.setText(tbNhanVien.getValueAt(row, 0).toString());
-        txtTenNV.setText(tbNhanVien.getValueAt(row, 1).toString());
-        String gioiTinh=tbNhanVien.getValueAt(row, 2).toString();
-        if(gioiTinh.equals("Nam")){
-            rdNam.setSelected(true);
-        }else if(gioiTinh.equals("Nữ")){
-            rdNu.setSelected(true); 
+        try {
+            // TODO add your handling code here:
+            int row = tbNhanVien.getSelectedRow();
+            txtMaNV.setText(tbNhanVien.getValueAt(row, 0).toString());
+            txtTenNV.setText(tbNhanVien.getValueAt(row, 1).toString());
+            String gioiTinh = tbNhanVien.getValueAt(row, 2).toString();
+            if (gioiTinh.equals("Nam")) {
+                rdNam.setSelected(true);
+            } else if (gioiTinh.equals("Nữ")) {
+                rdNu.setSelected(true);
+            }
+            String ns=tbNhanVien.getValueAt(row, 3).toString();
+            dscNgaySinh.setDate(sdf.parse(ns));
+            
+            txtSDT.setText(tbNhanVien.getValueAt(row, 4).toString());
+            cbbChucVu.setSelectedItem(tbNhanVien.getValueAt(row, 5));
+            txtPass.setText(tbNhanVien.getValueAt(row, 6).toString());
+            String trangThai = tbNhanVien.getValueAt(row, 7).toString();
+            if (trangThai.equals("Đang làm")) {
+                rdDangLam.setSelected(true);
+            } else if (trangThai.equals("Đã nghỉ")) {
+                rdDaNghi.setSelected(true);
+            }
+            txtDiaChi.setText(tbNhanVien.getValueAt(row, 8).toString());
+            lblImage.setText(tbNhanVien.getValueAt(row, 9).toString());
+        } catch (ParseException ex) {
+            Logger.getLogger(viewNhanVien.class.getName()).log(Level.SEVERE, null, ex);
         }
-        dscNgaySinh.setT
     }//GEN-LAST:event_tbNhanVienMouseClicked
+
+    private void btnChucVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChucVuActionPerformed
+        // TODO add your handling code here:
+        ViewChucVu vcv=new ViewChucVu();
+        vcv.setVisible(true);
+    }//GEN-LAST:event_btnChucVuActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnChucVu;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXoa;

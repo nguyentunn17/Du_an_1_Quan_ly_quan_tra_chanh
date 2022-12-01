@@ -60,7 +60,7 @@ public class QLNVRepo {
             ps.setString(1, nv.getMa());
             ps.setString(2, nv.getHoTen());
             ps.setString(3, nv.getGioiTinh());
-            ps.setDate(4, new java.sql.Date(nv.getNgaySinh().getTime()));
+            ps.setObject(4, nv.getNgaySinh()); 
             ps.setString(5, nv.getDiaChi());
             ps.setString(6, nv.getSdt());
             ps.setString(7, nv.getMatKhau());
@@ -76,18 +76,19 @@ public class QLNVRepo {
     public void update(String id, NhanVien nv) {
         try {
             Connection conn = jdbcUtil.getConnection();
-            String sql = "update nhanvien set ma=?, ten=?,gioitinh=?,ngaysinh=?,diachi=?,sdt=?,trangthai=?,anh=? where id =?";
+            String sql = "update nhanvien set ma=?, ten=?,gioitinh=?,ngaysinh=?,diachi=?,sdt=?,matkhau=?,trangthai=?,anh=?,idcv=? where id =?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, nv.getMa());
             ps.setString(2, nv.getHoTen());
             ps.setString(3, nv.getGioiTinh());
-            ps.setDate(4, new java.sql.Date(nv.getNgaySinh().getTime()));
+            ps.setObject(4, nv.getNgaySinh());
             ps.setString(5, nv.getDiaChi());
             ps.setString(6, nv.getSdt());
             ps.setString(7, nv.getMatKhau());
             ps.setInt(8, nv.getTrangThai());
             ps.setString(9, nv.getAnh());
-            ps.setString(10, id);
+            ps.setString(10, nv.getIdCV());
+            ps.setString(11, id);
             ps.execute();
         } catch (Exception ex) {
             ex.printStackTrace();

@@ -216,6 +216,11 @@ public class ViewChucVu extends javax.swing.JFrame {
         }
         cvs.insert(cv);
         loadTable();
+        clear();
+        JOptionPane.showMessageDialog(this, "Thêm thành công");
+        setVisible(false);
+        viewNhanVien vnv = new viewNhanVien();
+        vnv.setVisible(true);
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
@@ -232,9 +237,14 @@ public class ViewChucVu extends javax.swing.JFrame {
         }
         cvs.update(cv, ma);
         loadTable();
+        clear();
         JOptionPane.showMessageDialog(this, "Sửa thành công");
     }//GEN-LAST:event_btnUpdateActionPerformed
-
+    public void clear() {
+        lblID.setText("----");
+        txtMaChucVu.setText("");
+        txtTenChucVu.setText("");
+    }
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
         int row = tbChucVu.getSelectedRow();
@@ -245,6 +255,7 @@ public class ViewChucVu extends javax.swing.JFrame {
         String ma = tbChucVu.getValueAt(row, 0).toString();
         cvs.delete(ma);
         loadTable();
+        clear();
         JOptionPane.showMessageDialog(this, "Xóa thành công");
     }//GEN-LAST:event_btnDeleteActionPerformed
 
