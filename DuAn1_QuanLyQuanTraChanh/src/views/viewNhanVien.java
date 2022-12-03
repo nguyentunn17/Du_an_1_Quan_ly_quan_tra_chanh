@@ -17,20 +17,20 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import services.ChucVuSevrice;
-import services.QLNVServices;
-import services.impl.ChucVuImpl;
 
-import services.impl.QLNVImpl;
+import services.impl.NhanVienService;
+import services.IChucVuService;
+import services.INhanVienService;
+import services.impl.ChucVuService;
 
 public class viewNhanVien extends javax.swing.JPanel {
 
     private DefaultTableModel dtm = new DefaultTableModel();
-    private QLNVServices qLNVServices = new QLNVImpl();
+    private INhanVienService qLNVServices = new NhanVienService();
     private ArrayList<NhanVien> list = new ArrayList<>();
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-    private ChucVuSevrice cvs = new ChucVuImpl();
+    private IChucVuService cvs = new ChucVuService();
     private DefaultComboBoxModel dcbm = new DefaultComboBoxModel();
 
     public viewNhanVien() {

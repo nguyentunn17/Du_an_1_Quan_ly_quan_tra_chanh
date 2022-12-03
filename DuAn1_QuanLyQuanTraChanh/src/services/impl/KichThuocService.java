@@ -6,31 +6,31 @@ package services.impl;
 
 import domainmodels.KichThuoc;
 import java.util.ArrayList;
-import repositories.impl.KichThuoc_impl;
-import services.KichThuoc_Services;
+import repositories.impl.KichThuocRepository;
+import services.IKichThuocService;
 
 /**
  *
  * @author Inspiron
  */
-public class KichThuoc_sv_impl implements KichThuoc_Services{
-    private KichThuoc_impl kichThuoc_impl;
+public class KichThuocService implements IKichThuocService {
 
-    public KichThuoc_sv_impl() {
-        this.kichThuoc_impl=new KichThuoc_impl();
+    private KichThuocRepository kichThuoc_impl;
+
+    public KichThuocService() {
+        this.kichThuoc_impl = new KichThuocRepository();
     }
-    
 
     @Override
     public ArrayList<KichThuoc> getList() {
-       return this.kichThuoc_impl.getAll();
+        return this.kichThuoc_impl.getAll();
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void insert(KichThuoc kichThuoc) {
         this.kichThuoc_impl.insert(kichThuoc);
-       // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
@@ -44,6 +44,5 @@ public class KichThuoc_sv_impl implements KichThuoc_Services{
         this.kichThuoc_impl.update(id, kichThuoc);
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
-    
+
 }

@@ -7,7 +7,7 @@ package services.impl;
 import domainmodels.ThongKe;
 import java.util.ArrayList;
 import java.util.Date;
-import repositories.impl.Thong_Ke_rep;
+import repositories.impl.ThongKeRepository;
 import services.ThongKe_sv;
 
 /**
@@ -15,10 +15,10 @@ import services.ThongKe_sv;
  * @author Inspiron
  */
 public class ThongKe_impl implements ThongKe_sv{
-    private Thong_Ke_rep thong_Ke_rep;
+    private ThongKeRepository thong_Ke_rep;
 
     public ThongKe_impl() {
-        this.thong_Ke_rep=new Thong_Ke_rep();
+        this.thong_Ke_rep=new ThongKeRepository();
                 
     }
     

@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author Inspiron
  */
-public interface MucDuong_Services {
+public interface IMucDuongService {
         ArrayList<MucDuong> getList();
         public void insert(MucDuong mucDuong);
         public void delete(String id);

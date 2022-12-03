@@ -1,38 +1,28 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package services.impl;
 
 import domainmodels.MucDuong;
 import java.util.ArrayList;
-import repositories.impl.KichThuoc_impl;
-import repositories.impl.MucDuong_impl;
-import services.KichThuoc_Services;
-import services.MucDuong_Services;
+import repositories.impl.MucDuongRepository;
+import services.IMucDuongService;
 
-/**
- *
- * @author Inspiron
- */
-public class MucDuong_sv_impl implements MucDuong_Services{
-    private MucDuong_impl mucDuong_impl;
+public class MucDuongService implements IMucDuongService {
 
-    public MucDuong_sv_impl() {
-        this.mucDuong_impl=new MucDuong_impl();
+    private MucDuongRepository mucDuong_impl;
+
+    public MucDuongService() {
+        this.mucDuong_impl = new MucDuongRepository();
     }
-    
 
     @Override
     public ArrayList<MucDuong> getList() {
-       return this.mucDuong_impl.getAll();
+        return this.mucDuong_impl.getAll();
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void insert(MucDuong mucDuong) {
         this.mucDuong_impl.insert(mucDuong);
-       // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
@@ -46,6 +36,5 @@ public class MucDuong_sv_impl implements MucDuong_Services{
         this.mucDuong_impl.update(id, mucDuong);
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
-    
+
 }

@@ -19,7 +19,7 @@ import utilities.jdbcUtil;
  *
  * @author Quang
  */
-public class QLNVRepo {
+public class NhanVienRepository {
 
     public ArrayList<NhanVien> listall() {
         ArrayList<NhanVien> list = new ArrayList<>();

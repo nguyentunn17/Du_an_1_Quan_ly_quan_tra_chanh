@@ -7,10 +7,8 @@ package views;
 import domainmodels.MucDuong;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import services.KichThuoc_Services;
-import services.MucDuong_Services;
-import services.impl.KichThuoc_sv_impl;
-import services.impl.MucDuong_sv_impl;
+import services.IMucDuongService;
+import services.impl.MucDuongService;
 
 /**
  *
@@ -19,7 +17,7 @@ import services.impl.MucDuong_sv_impl;
 public class MucDuong_JFrame extends javax.swing.JFrame {
 
     private DefaultTableModel defaultTableModel;
-    private MucDuong_Services duong_Services=new MucDuong_sv_impl();
+    private IMucDuongService duong_Services=new MucDuongService();
 
     /**
      * Creates new form KichThuoc_JFrame

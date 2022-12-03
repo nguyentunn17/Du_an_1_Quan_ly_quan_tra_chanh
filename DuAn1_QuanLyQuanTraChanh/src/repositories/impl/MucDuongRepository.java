@@ -18,7 +18,7 @@ import utilities.jdbcUtil;
  *
  * @author Inspiron
  */
-public class MucDuong_impl {
+public class MucDuongRepository {
     public ArrayList<MucDuong> getAll() {
         ArrayList<MucDuong> list_MucDuongs = new ArrayList<>();
         try {

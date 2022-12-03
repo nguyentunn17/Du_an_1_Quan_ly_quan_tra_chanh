@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  *
  * @author Inspiron
  */
-public class Thong_Ke_rep implements ThongKe_sv{
+public class ThongKeRepository implements ThongKe_sv{
 
     @Override
     public ArrayList<ThongKe> getList() {
@@ -45,7 +45,7 @@ public class Thong_Ke_rep implements ThongKe_sv{
         } catch (SQLException ex) {
             ex.printStackTrace();
         } catch (Exception ex) {
-            Logger.getLogger(Thong_Ke_rep.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ThongKeRepository.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -72,7 +72,7 @@ public class Thong_Ke_rep implements ThongKe_sv{
         } catch (SQLException ex) {
             ex.printStackTrace();
         } catch (Exception ex) {
-            Logger.getLogger(Thong_Ke_rep.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ThongKeRepository.class.getName()).log(Level.SEVERE, null, ex);
         }
         return thongKes;
     }

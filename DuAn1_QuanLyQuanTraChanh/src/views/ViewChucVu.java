@@ -8,8 +8,8 @@ import domainmodels.ChucVu;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import services.ChucVuSevrice;
-import services.impl.ChucVuImpl;
+import services.IChucVuService;
+import services.impl.ChucVuService;
 
 /**
  *
@@ -19,7 +19,7 @@ public class ViewChucVu extends javax.swing.JFrame {
 
     private DefaultTableModel dtm = new DefaultTableModel();
     private ArrayList<ChucVu> list = new ArrayList<>();
-    private ChucVuSevrice cvs = new ChucVuImpl();
+    private IChucVuService cvs = new ChucVuService();
 
     /**
      * Creates new form ViewChucVu

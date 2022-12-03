@@ -15,7 +15,7 @@ import utilities.jdbcUtil;
  *
  * @author Inspiron
  */
-public class HoaDon_rep {
+public class HoaDonRepository {
     public ArrayList<HoaDon> getAll() {
         ArrayList<HoaDon> list = new ArrayList<>();
         try {

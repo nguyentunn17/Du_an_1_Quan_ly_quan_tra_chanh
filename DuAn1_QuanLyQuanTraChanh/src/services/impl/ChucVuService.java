@@ -7,38 +7,38 @@ package services.impl;
 import domainmodels.ChucVu;
 import java.util.ArrayList;
 import repositories.impl.ChucVuRepo;
-import services.ChucVuSevrice;
+import services.IChucVuService;
 
 /**
  *
  * @author Quang
  */
-public class ChucVuImpl implements ChucVuSevrice {
-    
+public class ChucVuService implements IChucVuService {
+
     private static ChucVuRepo chucVuRePo;
-    
-    public ChucVuImpl() {
+
+    public ChucVuService() {
         chucVuRePo = new ChucVuRepo();
     }
-    
+
     @Override
     public ArrayList<ChucVu> listAll() {
         return chucVuRePo.listAll();
     }
-    
+
     @Override
     public void insert(ChucVu cv) {
         chucVuRePo.insert(cv);
     }
-    
+
     @Override
-    public void update(ChucVu cv, String ma) { 
+    public void update(ChucVu cv, String ma) {
         chucVuRePo.update(cv, ma);
     }
-    
+
     @Override
     public void delete(String ma) {
         chucVuRePo.delete(ma);
     }
-    
+
 }

@@ -6,35 +6,31 @@ package services.impl;
 
 import domainmodels.MucDa;
 import java.util.ArrayList;
-import repositories.impl.KichThuoc_impl;
-import repositories.impl.MucDa_impl;
-import repositories.impl.MucDuong_impl;
-import services.KichThuoc_Services;
-import services.MucDa_Services;
-import services.MucDuong_Services;
+import repositories.impl.MucDaRepository;
+import services.IMucDaService;
 
 /**
  *
  * @author Inspiron
  */
-public class MucDa_sv_impl implements MucDa_Services{
-    private MucDa_impl mucDa_impl;
+public class MucDaService implements IMucDaService {
 
-    public MucDa_sv_impl() {
-        this.mucDa_impl=new MucDa_impl();
+    private MucDaRepository mucDa_impl;
+
+    public MucDaService() {
+        this.mucDa_impl = new MucDaRepository();
     }
-    
 
     @Override
     public ArrayList<MucDa> getList() {
-       return this.mucDa_impl.getAll();
+        return this.mucDa_impl.getAll();
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void insert(MucDa mucDa) {
         this.mucDa_impl.insert(mucDa);
-       // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
@@ -48,6 +44,5 @@ public class MucDa_sv_impl implements MucDa_Services{
         this.mucDa_impl.update(id, mucDa);
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
-    
+
 }

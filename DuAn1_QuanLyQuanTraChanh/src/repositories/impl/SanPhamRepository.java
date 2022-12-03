@@ -51,14 +51,14 @@ public class SanPhamRepository implements ISanPhamRepository {
             Connection conn = utilities.jdbcUtil.getConnection();
             String query = "INSERT INTO KHUYENMAI(ma,ten,loaigiamgia,mucgiamgiaphantram,mucgiamgiatienmat,ngaybatdau,ngayketthuc,trangthai) values(?,?,?,?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setObject(1, km.getMa());
-            ps.setObject(2, km.getTen());
-            ps.setObject(3, km.getLoaiGiamGia());
-            ps.setObject(4, km.getMucGiamGiaPhanTram());
-            ps.setObject(5, km.getMucGiamGiaTienMat());
-            ps.setObject(6, km.getNgayBatDau());
-            ps.setObject(7, km.getNgayKetThuc());
-            ps.setObject(8, km.getTrangThai());
+//            ps.setObject(1, km.getMa());
+//            ps.setObject(2, km.getTen());
+//            ps.setObject(3, km.getLoaiGiamGia());
+//            ps.setObject(4, km.getMucGiamGiaPhanTram());
+//            ps.setObject(5, km.getMucGiamGiaTienMat());
+//            ps.setObject(6, km.getNgayBatDau());
+//            ps.setObject(7, km.getNgayKetThuc());
+//            ps.setObject(8, km.getTrangThai());
 
             ps.execute();
         } catch (Exception ex) {
@@ -72,14 +72,14 @@ public class SanPhamRepository implements ISanPhamRepository {
             Connection conn = utilities.jdbcUtil.getConnection();
             String query = "UPDATE KHUYENMAI SET ma=?,ten=?,loaigiamgia=?,mucgiamgiaphantram=?,mucgiamgiatienmat=?,ngaybatdau=?,ngayketthuc=?,trangthai=? WHERE ID=?";
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setObject(1, km.getMa());
-            ps.setObject(2, km.getTen());
-            ps.setObject(3, km.getLoaiGiamGia());
-            ps.setObject(4, km.getMucGiamGiaPhanTram());
-            ps.setObject(5, km.getMucGiamGiaTienMat());
-            ps.setObject(6, km.getNgayBatDau());
-            ps.setObject(7, km.getNgayKetThuc());
-            ps.setObject(8, km.getTrangThai());
+//            ps.setObject(1, km.getMa());
+//            ps.setObject(2, km.getTen());
+//            ps.setObject(3, km.getLoaiGiamGia());
+//            ps.setObject(4, km.getMucGiamGiaPhanTram());
+//            ps.setObject(5, km.getMucGiamGiaTienMat());
+//            ps.setObject(6, km.getNgayBatDau());
+//            ps.setObject(7, km.getNgayKetThuc());
+//            ps.setObject(8, km.getTrangThai());
             ps.setObject(9, id);
 
             ps.execute();

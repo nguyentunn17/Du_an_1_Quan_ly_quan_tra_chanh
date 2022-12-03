@@ -18,7 +18,7 @@ import utilities.jdbcUtil;
  *
  * @author Inspiron
  */
-public class KichThuoc_impl {
+public class KichThuocRepository {
     public ArrayList<KichThuoc> getAll() {
         ArrayList<KichThuoc> list_kThuocs = new ArrayList<>();
         try {

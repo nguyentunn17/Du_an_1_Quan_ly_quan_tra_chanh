@@ -8,19 +8,19 @@ package services.impl;
 import domainmodels.NhanVien;
 import domainmodels.NhanVienVMD;
 import java.util.ArrayList;
-import repositories.impl.QLNVRepo;
-import services.QLNVServices;
+import repositories.impl.NhanVienRepository;
+import services.INhanVienService;
 
 /**
  *
  * @author Quang
  */
-public class QLNVImpl implements QLNVServices {
+public class NhanVienService implements INhanVienService {
 
-    private QLNVRepo qLNVRepo;
+    private NhanVienRepository qLNVRepo;
 
-    public QLNVImpl() {
-        qLNVRepo = new QLNVRepo();
+    public NhanVienService() {
+        qLNVRepo = new NhanVienRepository();
     }
 
     @Override

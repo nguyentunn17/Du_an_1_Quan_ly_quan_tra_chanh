@@ -18,7 +18,7 @@ import utilities.jdbcUtil;
  *
  * @author Inspiron
  */
-public class MucDa_impl {
+public class MucDaRepository {
     public ArrayList<MucDa> getAll() {
         ArrayList<MucDa> list_MucDa = new ArrayList<>();
         try {

@@ -6,7 +6,7 @@ package services.impl;
 
 import domainmodels.HoaDon;
 import java.util.ArrayList;
-import repositories.impl.HoaDon_rep;
+import repositories.impl.HoaDonRepository;
 import services.HoaDon_sv;
 
 /**
@@ -14,10 +14,10 @@ import services.HoaDon_sv;
  * @author Inspiron
  */
 public class HoaDon_Imlp implements HoaDon_sv{
-    private HoaDon_rep hoaDon_rep;
+    private HoaDonRepository hoaDon_rep;
 
     public HoaDon_Imlp() {
-        this.hoaDon_rep=new HoaDon_rep();
+        this.hoaDon_rep=new HoaDonRepository();
                 
     }
     

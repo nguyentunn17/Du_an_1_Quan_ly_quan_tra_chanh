@@ -7,12 +7,8 @@ package views;
 import domainmodels.MucDa;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import services.KichThuoc_Services;
-import services.MucDa_Services;
-import services.MucDuong_Services;
-import services.impl.KichThuoc_sv_impl;
-import services.impl.MucDa_sv_impl;
-import services.impl.MucDuong_sv_impl;
+import services.IMucDaService;
+import services.impl.MucDaService;
 
 /**
  *
@@ -21,7 +17,7 @@ import services.impl.MucDuong_sv_impl;
 public class MucDa_JFrame extends javax.swing.JFrame {
 
     private DefaultTableModel defaultTableModel;
-    private MucDa_Services da_Services=new MucDa_sv_impl();
+    private IMucDaService da_Services=new MucDaService();
 
     /**
      * Creates new form KichThuoc_JFrame

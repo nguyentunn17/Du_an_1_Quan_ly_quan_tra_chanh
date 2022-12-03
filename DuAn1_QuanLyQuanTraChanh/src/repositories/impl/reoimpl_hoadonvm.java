@@ -5,14 +5,11 @@
 package repositories.impl;
 
 import java.util.ArrayList;
-import repositories.reo_hoadonvn;
 import viewmodels.HoaDonVM;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import domainmodels.luong;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import repositories.reo_hoadonvn;
@@ -31,13 +28,14 @@ public class reoimpl_hoadonvm implements reo_hoadonvn {
         Connection conn;
         try {
             conn = jdbcUtil.getConnection();
-            String sql = "SELECT dbo.HOADON.MaHD,dbo.HINHTHUCTHANHTOAN.NgayTao,dbo.NHANVIEN.Ten,dbo.KHACHHANG.Ten,\n"
-                    + "dbo.KHACHHANG.DiaChi,dbo.HOADONCHITIET.ThanhTien,dbo.KHACHHANG.Sdt,dbo.HINHTHUCTHANHTOAN.TrangThai\n"
-                    + "FROM   dbo.HINHTHUCTHANHTOAN INNER JOIN\n"
-                    + "             dbo.HOADON ON dbo.HINHTHUCTHANHTOAN.IdHD = dbo.HOADON.Id INNER JOIN\n"
-                    + "             dbo.HOADONCHITIET ON dbo.HOADON.Id = dbo.HOADONCHITIET.IdHD INNER JOIN\n"
-                    + "             dbo.KHACHHANG ON dbo.HOADON.IdKH = dbo.KHACHHANG.Id INNER JOIN\n"
-                    + "             dbo.NHANVIEN ON dbo.HINHTHUCTHANHTOAN.IdNV = dbo.NHANVIEN.Id AND dbo.HOADON.IdNV = dbo.NHANVIEN.Id";
+            String sql = """
+                         SELECT dbo.HOADON.MaHD,dbo.HINHTHUCTHANHTOAN.NgayTao,dbo.NHANVIEN.Ten,dbo.KHACHHANG.Ten,
+                         dbo.KHACHHANG.DiaChi,dbo.HOADONCHITIET.ThanhTien,dbo.KHACHHANG.Sdt,dbo.HINHTHUCTHANHTOAN.TrangThai
+                         FROM   dbo.HINHTHUCTHANHTOAN INNER JOIN
+                                      dbo.HOADON ON dbo.HINHTHUCTHANHTOAN.IdHD = dbo.HOADON.Id INNER JOIN
+                                      dbo.HOADONCHITIET ON dbo.HOADON.Id = dbo.HOADONCHITIET.IdHD INNER JOIN
+                                      dbo.KHACHHANG ON dbo.HOADON.IdKH = dbo.KHACHHANG.Id INNER JOIN
+                                      dbo.NHANVIEN ON dbo.HINHTHUCTHANHTOAN.IdNV = dbo.NHANVIEN.Id AND dbo.HOADON.IdNV = dbo.NHANVIEN.Id""";
             PreparedStatement pre = conn.prepareStatement(sql);
             pre.execute();
             ResultSet rs = pre.getResultSet();
@@ -52,12 +50,10 @@ public class reoimpl_hoadonvm implements reo_hoadonvn {
                 int trangthai = rs.getInt("TrangThai");
                 HoaDonVM hdvm = new HoaDonVM(mahd, ngaytao, nguoitao, tenkh, diachi, tongtien, sdtnguoinhan, trangthai);
                 listhdvm.add(hdvm);
-
             }
         } catch (Exception ex) {
             Logger.getLogger(reoimpl_hoadonvm.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         return listhdvm;
     }
 

@@ -13,7 +13,7 @@ import java.util.ArrayList;
  *
  * @author Quang
  */
-public interface QLNVServices {
+public interface INhanVienService {
 
     ArrayList<NhanVien> listAll();
 
