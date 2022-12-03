@@ -6,7 +6,7 @@ package services;
 
 
 import domainmodels.NhanVien;
-import viewmodels.NhanVienVMD;
+import domainmodels.NhanVienVMD;
 import java.util.ArrayList;
 
 /**

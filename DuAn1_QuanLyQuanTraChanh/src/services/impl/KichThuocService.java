@@ -7,16 +7,16 @@ package services.impl;
 import domainmodels.KichThuoc;
 import java.util.ArrayList;
 import repositories.impl.KichThuoc_impl;
-import services.IKichThuocService;
+import services.KichThuoc_Services;
 
 /**
  *
  * @author Inspiron
  */
-public class KichThuocService implements IKichThuocService{
+public class KichThuoc_sv_impl implements KichThuoc_Services{
     private KichThuoc_impl kichThuoc_impl;
 
-    public KichThuocService() {
+    public KichThuoc_sv_impl() {
         this.kichThuoc_impl=new KichThuoc_impl();
     }
     

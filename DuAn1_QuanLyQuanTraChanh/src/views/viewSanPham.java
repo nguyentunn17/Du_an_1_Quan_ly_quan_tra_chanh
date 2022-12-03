@@ -1,29 +1,20 @@
 package views;
 
-import domainmodels.KichThuoc;
-import domainmodels.SanPham;
-import java.awt.Image;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
-import services.IKichThuocService;
 import services.ISanPhamService;
-import services.impl.KichThuocService;
 import services.impl.SanPhamService;
 import viewmodels.SanPhamViewModel;
 
 public class viewSanPham extends javax.swing.JPanel {
 
     private final ISanPhamService sanPhamService;
-    private final IKichThuocService kichThuocService;
     DefaultTableModel dtm;
 
     public viewSanPham() {
         initComponents();
         this.sanPhamService = new SanPhamService();
-        this.kichThuocService = new KichThuocService();
         this.loadTableSP(this.sanPhamService.getByID());
-        this.getKichThuoc();
     }
 
     private void loadTableSP(ArrayList<SanPhamViewModel> list) {
@@ -40,18 +31,11 @@ public class viewSanPham extends javax.swing.JPanel {
                 spmd.getGiaNhap(),
                 spmd.getGiaBan(),
                 spmd.getSoLuong(),
-                spmd.getTrangThai() == 0 ? "Đang bán" : "Ngừng bán",
+                spmd.getTrangThai()==0?"Đang bán":"Ngừng bán",
                 spmd.getMoTa(),
                 spmd.getAnh()
             };
             dtm.addRow(rowdata);
-        }
-    }
-
-    private void getKichThuoc() {
-        cbb_size.removeAllItems();
-        for (KichThuoc kichThuoc : this.kichThuocService.getList()) {
-            cbb_size.addItem(kichThuoc.getTenkt());
         }
     }
 
@@ -110,7 +94,7 @@ public class viewSanPham extends javax.swing.JPanel {
         jLabel4.setText("Số lượng tồn");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel5.setText("Danh Mục");
+        jLabel5.setText("Loại sản phẩm");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel6.setText("Size");
@@ -155,27 +139,12 @@ public class viewSanPham extends javax.swing.JPanel {
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jButton2.setText("Sửa");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
 
         btn_xoa.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btn_xoa.setText("Xóa");
-        btn_xoa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_xoaActionPerformed(evt);
-            }
-        });
 
         jButton4.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jButton4.setText("Mới");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -276,7 +245,7 @@ public class viewSanPham extends javax.swing.JPanel {
         jLabel9.setText("Tìm kiếm");
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel10.setText("Danh mục");
+        jLabel10.setText("Loại sản phẩm");
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel11.setText("Trạng thái");
@@ -286,14 +255,9 @@ public class viewSanPham extends javax.swing.JPanel {
 
             },
             new String [] {
-                "STT", "Mã sản phẩm", "Tên sản phẩm", "Danh mục", "Size", "Giá nhập", "Giá bán", "Số lượng tồn", "Trạng thái", "Mô tả", "Ảnh"
+                "STT", "Mã sản phẩm", "Tên sản phẩm", "Loại sản phẩm", "Size", "Giá nhập", "Giá bán", "Số lượng tồn", "Trạng thái", "Mô tả", "Ảnh"
             }
         ));
-        tb_sanpham.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tb_sanphamMouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(tb_sanpham);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -311,7 +275,7 @@ public class viewSanPham extends javax.swing.JPanel {
                 .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -356,49 +320,8 @@ public class viewSanPham extends javax.swing.JPanel {
     }//GEN-LAST:event_txt_soLuongtonActionPerformed
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
-//        SanPham sp=this.getfo
+        // TODO add your handling code here:
     }//GEN-LAST:event_btn_themActionPerformed
-
-    private void tb_sanphamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_sanphamMouseClicked
-        int row = tb_sanpham.getSelectedRow();
-        String ma = tb_sanpham.getValueAt(row, 1).toString();
-        String ten = tb_sanpham.getValueAt(row, 2).toString();
-        String danhMuc = tb_sanpham.getValueAt(row, 3).toString();
-        String size = tb_sanpham.getValueAt(row, 4).toString();
-        String giaNhap = tb_sanpham.getValueAt(row, 5).toString();
-        String giaBan = tb_sanpham.getValueAt(row, 6).toString();
-        String soLuong = tb_sanpham.getValueAt(row, 7).toString();
-        String trangThai = tb_sanpham.getValueAt(row, 8).toString();
-        String moTa = tb_sanpham.getValueAt(row, 9).toString();
-        String hinh = tb_sanpham.getValueAt(row, 10).toString();
-        ImageIcon imageIcon = new ImageIcon(getClass().getResource("/image/" + hinh));
-        Image image = imageIcon.getImage();
-        Image newimg = image.getScaledInstance(lbl_image.getWidth(), lbl_image.getHeight(), java.awt.Image.SCALE_SMOOTH);
-        imageIcon = new ImageIcon(newimg);
-
-        txt_ma.setText(ma);
-        txt_ten.setText(ten);
-//        txt.setText(ma);
-        txt_giaban.setText(giaBan);
-        cbb_loaisanpham.setSelectedItem(danhMuc);
-        cbb_size.setSelectedItem(size);
-        txt_soLuongton.setText(soLuong);
-        cbb_trangThai.setSelectedItem(trangThai);
-        txa_moTa.setText(moTa);
-
-    }//GEN-LAST:event_tb_sanphamMouseClicked
-
-    private void btn_xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaActionPerformed
-
-    }//GEN-LAST:event_btn_xoaActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

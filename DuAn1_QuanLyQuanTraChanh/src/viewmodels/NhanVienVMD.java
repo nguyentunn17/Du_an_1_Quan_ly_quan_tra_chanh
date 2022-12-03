@@ -1,7 +1,16 @@
-package viewmodels;
+package domainmodels;
+
 
 import java.util.Date;
 
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+/**
+ *
+ * @author Quang
+ */
 public class NhanVienVMD {
 
     private String ma;
@@ -111,4 +120,5 @@ public class NhanVienVMD {
         this.chucVu = chucVu;
     }
 
+    
 }

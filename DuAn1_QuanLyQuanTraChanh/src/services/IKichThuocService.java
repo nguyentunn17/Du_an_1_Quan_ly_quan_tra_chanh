@@ -11,14 +11,11 @@ import java.util.ArrayList;
  *
  * @author Inspiron
  */
-public interface IKichThuocService {
-
-    ArrayList<KichThuoc> getList();
-
-    public void insert(KichThuoc kichThuoc);
-
-    public void delete(String id);
-
-    public void update(String id, KichThuoc kichThuoc);
-
+public interface KichThuoc_Services {
+        ArrayList<KichThuoc> getList();
+        public void insert(KichThuoc kichThuoc);
+        public void delete(String id);
+        public void update(String id,KichThuoc kichThuoc);
+                
+    
 }

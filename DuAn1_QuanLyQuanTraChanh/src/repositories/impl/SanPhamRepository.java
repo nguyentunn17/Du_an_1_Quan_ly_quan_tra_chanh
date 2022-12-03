@@ -49,17 +49,16 @@ public class SanPhamRepository implements ISanPhamRepository {
     public void create(SanPham sp) {
         try {
             Connection conn = utilities.jdbcUtil.getConnection();
-            String query = "INSERT INTO SANPHAM(idKT,idDM,masp,tensp,giaNhap,giaBan,soLuongTon,mota,TRANGTHAI) values(?,?,?,?,?,?,?,?,?)";
+            String query = "INSERT INTO KHUYENMAI(ma,ten,loaigiamgia,mucgiamgiaphantram,mucgiamgiatienmat,ngaybatdau,ngayketthuc,trangthai) values(?,?,?,?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setObject(1, sp.getIdKT());
-            ps.setObject(2, sp.getIdDM());
-            ps.setObject(3, sp.getMaSP());
-            ps.setObject(4, sp.getTenSP());
-            ps.setObject(5, sp.getGiaNhap());
-            ps.setObject(6, sp.getGiaBan());
-            ps.setObject(7, sp.getSoLuongTon());
-            ps.setObject(8, sp.getMoTa());
-            ps.setObject(9, sp.getTrangThai());
+            ps.setObject(1, km.getMa());
+            ps.setObject(2, km.getTen());
+            ps.setObject(3, km.getLoaiGiamGia());
+            ps.setObject(4, km.getMucGiamGiaPhanTram());
+            ps.setObject(5, km.getMucGiamGiaTienMat());
+            ps.setObject(6, km.getNgayBatDau());
+            ps.setObject(7, km.getNgayKetThuc());
+            ps.setObject(8, km.getTrangThai());
 
             ps.execute();
         } catch (Exception ex) {
@@ -71,18 +70,17 @@ public class SanPhamRepository implements ISanPhamRepository {
     public void update(SanPham sp, String id) {
         try {
             Connection conn = utilities.jdbcUtil.getConnection();
-            String query = "UPDATE KHUYENMAI SET idKT=?,idDM=?,masp=?,tensp=?,giaNhap=?,giaBan=?,soLuongTon=?,mota=?,trangthai=? WHERE ID=?";
+            String query = "UPDATE KHUYENMAI SET ma=?,ten=?,loaigiamgia=?,mucgiamgiaphantram=?,mucgiamgiatienmat=?,ngaybatdau=?,ngayketthuc=?,trangthai=? WHERE ID=?";
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setObject(1, sp.getIdKT());
-            ps.setObject(2, sp.getIdDM());
-            ps.setObject(3, sp.getMaSP());
-            ps.setObject(4, sp.getTenSP());
-            ps.setObject(5, sp.getGiaNhap());
-            ps.setObject(6, sp.getGiaBan());
-            ps.setObject(7, sp.getSoLuongTon());
-            ps.setObject(8, sp.getMoTa());
-            ps.setObject(9, sp.getTrangThai());
-            ps.setObject(10, id);
+            ps.setObject(1, km.getMa());
+            ps.setObject(2, km.getTen());
+            ps.setObject(3, km.getLoaiGiamGia());
+            ps.setObject(4, km.getMucGiamGiaPhanTram());
+            ps.setObject(5, km.getMucGiamGiaTienMat());
+            ps.setObject(6, km.getNgayBatDau());
+            ps.setObject(7, km.getNgayKetThuc());
+            ps.setObject(8, km.getTrangThai());
+            ps.setObject(9, id);
 
             ps.execute();
         } catch (Exception ex) {
@@ -94,7 +92,7 @@ public class SanPhamRepository implements ISanPhamRepository {
     public void delete(String id) {
         try {
             Connection conn = utilities.jdbcUtil.getConnection();
-            String query = "DELETE FROM SANPHAM WHERE ID=?";
+            String query = "DELETE FROM KHUYENMAI WHERE ID=?";
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setObject(1, id);
             ps.execute();

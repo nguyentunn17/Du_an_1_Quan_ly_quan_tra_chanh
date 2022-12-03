@@ -7,8 +7,8 @@ package views;
 import domainmodels.KichThuoc;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import services.impl.KichThuocService;
-import services.IKichThuocService;
+import services.KichThuoc_Services;
+import services.impl.KichThuoc_sv_impl;
 
 /**
  *
@@ -17,7 +17,7 @@ import services.IKichThuocService;
 public class KichThuoc_JFrame extends javax.swing.JFrame {
 
     private DefaultTableModel defaultTableModel;
-    private IKichThuocService kichThuoc_Services = new KichThuocService();
+    private KichThuoc_Services kichThuoc_Services = new KichThuoc_sv_impl();
 
     /**
      * Creates new form KichThuoc_JFrame

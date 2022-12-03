@@ -44,8 +44,8 @@ public class AnhRepository implements IAnhRepository {
             String query = "INSERT INTO HINHANH(IDSanPham,TENHA,DUONGDAN,TRANGTHAI) VALUES (?,?,?,?)";
 
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setObject(1, asp.getIdSP());
-            ps.setObject(2, asp.getTenAnh());
+            ps.setObject(1, asp.getTenAnh());
+            ps.setObject(2, asp.getIdSP());
             ps.setObject(3, asp.getDuongDan());
             ps.setObject(4, asp.getTrangThai());
 
@@ -63,8 +63,8 @@ public class AnhRepository implements IAnhRepository {
             String query = "UPDATE HINHANH SET IDSANPHAM=? ,TENHA=? ,DUONGDAN=?,TRANGTHAI=? WHERE ID=?";
             PreparedStatement ps = conn.prepareStatement(query);
 
-          ps.setObject(1, asp.getIdSP());
-            ps.setObject(2, asp.getTenAnh());
+            ps.setObject(1, asp.getTenAnh());
+            ps.setObject(2, asp.getIdSP());
             ps.setObject(3, asp.getDuongDan());
             ps.setObject(4, asp.getTrangThai());
             ps.setObject(5, id);

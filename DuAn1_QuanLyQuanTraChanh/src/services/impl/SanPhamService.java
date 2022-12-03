@@ -27,17 +27,17 @@ public class SanPhamService implements ISanPhamService {
 
     @Override
     public void create(SanPham sp) {
-        this.sanPhamRepository.create(sp);
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void update(SanPham sp, String id) {
-        this.sanPhamRepository.update(sp, id);
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void delete(String id) {
-        this.sanPhamRepository.delete(id);
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }
