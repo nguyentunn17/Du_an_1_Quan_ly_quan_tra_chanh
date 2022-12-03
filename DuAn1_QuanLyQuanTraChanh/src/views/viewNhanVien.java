@@ -2,7 +2,7 @@ package views;
 
 import domainmodels.ChucVu;
 import domainmodels.NhanVien;
-import domainmodels.NhanVienVMD;
+import viewmodels.NhanVienVMD;
 import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import services.ChucVuSevrice;
 import services.QLNVServices;
-import services.impl.ChucVuImpl;
+import services.impl.ChucVuService;
 
 import services.impl.QLNVImpl;
 
@@ -30,7 +30,7 @@ public class viewNhanVien extends javax.swing.JPanel {
     private ArrayList<NhanVien> list = new ArrayList<>();
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-    private ChucVuSevrice cvs = new ChucVuImpl();
+    private ChucVuSevrice cvs = new ChucVuService();
     private DefaultComboBoxModel dcbm = new DefaultComboBoxModel();
 
     public viewNhanVien() {

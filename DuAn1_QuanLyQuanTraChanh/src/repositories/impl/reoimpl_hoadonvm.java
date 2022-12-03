@@ -4,15 +4,11 @@
  */
 package repositories.impl;
 
-import java.util.ArrayList;
-import repositories.reo_hoadonvn;
 import viewmodels.HoaDonVM;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import domainmodels.luong;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import repositories.reo_hoadonvn;

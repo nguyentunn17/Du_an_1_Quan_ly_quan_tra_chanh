@@ -13,11 +13,11 @@ import services.ChucVuSevrice;
  *
  * @author Quang
  */
-public class ChucVuImpl implements ChucVuSevrice {
+public class ChucVuService implements ChucVuSevrice {
     
     private static ChucVuRepo chucVuRePo;
     
-    public ChucVuImpl() {
+    public ChucVuService() {
         chucVuRePo = new ChucVuRepo();
     }
     

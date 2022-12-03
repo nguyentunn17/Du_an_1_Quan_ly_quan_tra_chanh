@@ -54,14 +54,17 @@ public class JFrameAnh extends javax.swing.JFrame {
     }
 
     private AnhSanPham getForm() {
+        AnhSanPham anhSanPham= new AnhSanPham();
         String ten = txt_ma.getText().trim();
         String sanpham = cbb_sanpham.getSelectedItem().toString();
-        String trangThai = cbb_hoatdong.getSelectedItem().toString();
-        AnhSanPham anhSanPham = new AnhSanPham(ten, getidsp(sanpham), hinhAnh, ABORT);
+        String trangThai = cbb_trangthai.getSelectedItem().toString();
+        
+        anhSanPham.setTenAnh(ten);
+        anhSanPham.setIdSP(getidsp(sanpham));
         anhSanPham.setDuongDan(hinhAnh);
-        if (trangThai.equalsIgnoreCase("Hoạt động")) {
+        if(trangThai.equalsIgnoreCase("Hoạt động")){
             anhSanPham.setTrangThai(0);
-        } else {
+        }else{
             anhSanPham.setTrangThai(1);
         }
         return anhSanPham;
@@ -95,7 +98,7 @@ public class JFrameAnh extends javax.swing.JFrame {
     private void newForm() {
         txt_ma.setText("");
         lbl_anh.setText("");
-        cbb_hoatdong.setSelectedIndex(0);
+        cbb_trangthai.setSelectedIndex(0);
         cbb_sanpham.setSelectedIndex(0);
     }
 
@@ -115,7 +118,7 @@ public class JFrameAnh extends javax.swing.JFrame {
         btn_xoa = new javax.swing.JButton();
         txt_ma = new javax.swing.JTextField();
         cbb_sanpham = new javax.swing.JComboBox<>();
-        cbb_hoatdong = new javax.swing.JComboBox<>();
+        cbb_trangthai = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -175,7 +178,7 @@ public class JFrameAnh extends javax.swing.JFrame {
 
         cbb_sanpham.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        cbb_hoatdong.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hoạt động ", "Ngừng hoạt động" }));
+        cbb_trangthai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hoạt động", "Ngừng hoạt động" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -202,7 +205,7 @@ public class JFrameAnh extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cbb_hoatdong, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cbb_trangthai, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(cbb_sanpham, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
@@ -230,7 +233,7 @@ public class JFrameAnh extends javax.swing.JFrame {
                     .addComponent(cbb_sanpham, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbb_hoatdong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbb_trangthai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -289,7 +292,7 @@ public class JFrameAnh extends javax.swing.JFrame {
         lbl_anh.setIcon(imageIcon);
         txt_ma.setText(tenAnh);
         cbb_sanpham.setSelectedItem(tenSanPham);
-        cbb_hoatdong.setSelectedItem(trangThai);
+        cbb_trangthai.setSelectedItem(trangThai);
     }//GEN-LAST:event_tb_anhMouseClicked
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
@@ -352,8 +355,8 @@ public class JFrameAnh extends javax.swing.JFrame {
     private javax.swing.JButton btn_sua;
     private javax.swing.JButton btn_them;
     private javax.swing.JButton btn_xoa;
-    private javax.swing.JComboBox<String> cbb_hoatdong;
     private javax.swing.JComboBox<String> cbb_sanpham;
+    private javax.swing.JComboBox<String> cbb_trangthai;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

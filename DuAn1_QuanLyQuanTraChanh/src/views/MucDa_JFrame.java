@@ -7,12 +7,12 @@ package views;
 import domainmodels.MucDa;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import services.KichThuoc_Services;
 import services.MucDa_Services;
 import services.MucDuong_Services;
-import services.impl.KichThuoc_sv_impl;
+import services.impl.KichThuocService;
 import services.impl.MucDa_sv_impl;
 import services.impl.MucDuong_sv_impl;
+import services.IKichThuocService;
 
 /**
  *

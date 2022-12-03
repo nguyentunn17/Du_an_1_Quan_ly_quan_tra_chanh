@@ -5,7 +5,7 @@
 package repositories.impl;
 
 import domainmodels.NhanVien;
-import domainmodels.NhanVienVMD;
+import viewmodels.NhanVienVMD;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.logging.Level;

@@ -6,7 +6,7 @@ package services.impl;
 
 
 import domainmodels.NhanVien;
-import domainmodels.NhanVienVMD;
+import viewmodels.NhanVienVMD;
 import java.util.ArrayList;
 import repositories.impl.QLNVRepo;
 import services.QLNVServices;
