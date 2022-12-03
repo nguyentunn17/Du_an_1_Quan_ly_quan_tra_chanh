@@ -6,13 +6,14 @@ package services;
 
 import domainmodels.AnhSanPham;
 import java.util.ArrayList;
+import viewmodels.AnhViewModel;
 
 /**
  *
  * @author Hung
  */
 public interface IAnhService {
-    ArrayList<AnhSanPham> read();
+    ArrayList<AnhViewModel> read();
 
     void create(AnhSanPham asp);
 

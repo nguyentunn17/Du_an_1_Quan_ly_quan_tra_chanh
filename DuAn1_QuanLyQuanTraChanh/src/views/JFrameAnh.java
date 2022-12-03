@@ -5,6 +5,7 @@
 package views;
 
 import domainmodels.AnhSanPham;
+import domainmodels.SanPham;
 import java.awt.Image;
 import java.io.File;
 import javax.swing.Icon;
@@ -12,7 +13,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
 import services.IAnhService;
+import services.ISanPhamService;
 import services.impl.AnhService;
+import services.impl.SanPhamService;
+import viewmodels.AnhViewModel;
 
 /**
  *
@@ -21,21 +25,30 @@ import services.impl.AnhService;
 public class JFrameAnh extends javax.swing.JFrame {
 
     private final IAnhService anhService;
+    private ISanPhamService sanPhamService;
     DefaultTableModel dtm;
     private String hinhAnh = null;
 
     public JFrameAnh() {
         initComponents();
         this.anhService = new AnhService();
+        this.sanPhamService = new SanPhamService();
         this.loadTable();
+        this.loadCbbSanPham();
     }
 
     private void loadTable() {
         dtm = (DefaultTableModel) tb_anh.getModel();
         dtm.setRowCount(0);
         int stt = 1;
-        for (AnhSanPham anhSanPham : this.anhService.read()) {
-            Object[] rowdata = {stt++, anhSanPham.getTenAnh(), anhSanPham.getDuongDan(), anhSanPham.getTrangThai()};
+        for (AnhViewModel anhSanPham : this.anhService.read()) {
+            Object[] rowdata = {
+                stt++,
+                anhSanPham.getTenAnh(),
+                anhSanPham.getTenSP(),
+                anhSanPham.getDuongDan(),
+                anhSanPham.getTrangThai() == 0 ? "Hoạt động" : "Ngừng hoạt động"
+            };
             dtm.addRow(rowdata);
         }
     }
@@ -44,7 +57,7 @@ public class JFrameAnh extends javax.swing.JFrame {
         String ten = txt_ma.getText().trim();
         String sanpham = cbb_sanpham.getSelectedItem().toString();
         String trangThai = cbb_hoatdong.getSelectedItem().toString();
-        AnhSanPham anhSanPham = new AnhSanPham(ten, sanpham, hinhAnh, ABORT);
+        AnhSanPham anhSanPham = new AnhSanPham(ten, getidsp(sanpham), hinhAnh, ABORT);
         anhSanPham.setDuongDan(hinhAnh);
         if (trangThai.equalsIgnoreCase("Hoạt động")) {
             anhSanPham.setTrangThai(0);
@@ -54,20 +67,52 @@ public class JFrameAnh extends javax.swing.JFrame {
         return anhSanPham;
     }
 
+    private void loadCbbSanPham() {
+        cbb_sanpham.removeAllItems();
+        for (SanPham sp : this.sanPhamService.read()) {
+            cbb_sanpham.addItem(sp.getTenSP());
+        }
+    }
+
+    private String getidsp(String ten) {
+        for (SanPham sanPham : this.sanPhamService.read()) {
+            if (sanPham.getTenSP().equalsIgnoreCase(ten)) {
+                return sanPham.getId();
+            }
+        }
+        return null;
+    }
+
+    private String getidanh(String ten) {
+        for (AnhViewModel anh : this.anhService.read()) {
+            if (anh.getTenAnh().equalsIgnoreCase(ten)) {
+                return anh.getId();
+            }
+        }
+        return null;
+    }
+
+    private void newForm() {
+        txt_ma.setText("");
+        lbl_anh.setText("");
+        cbb_hoatdong.setSelectedIndex(0);
+        cbb_sanpham.setSelectedIndex(0);
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         lbl_anh = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btn_them = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tb_anh = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btn_sua = new javax.swing.JButton();
+        btn_xoa = new javax.swing.JButton();
         txt_ma = new javax.swing.JTextField();
         cbb_sanpham = new javax.swing.JComboBox<>();
         cbb_hoatdong = new javax.swing.JComboBox<>();
@@ -83,7 +128,12 @@ public class JFrameAnh extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Thêm ảnh");
+        btn_them.setText("Thêm ảnh");
+        btn_them.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_themActionPerformed(evt);
+            }
+        });
 
         tb_anh.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -109,9 +159,19 @@ public class JFrameAnh extends javax.swing.JFrame {
 
         jLabel4.setText("Tên sản phẩm");
 
-        jButton2.setText("Sửa ảnh");
+        btn_sua.setText("Sửa ảnh");
+        btn_sua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_suaActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Xóa ảnh");
+        btn_xoa.setText("Xóa ảnh");
+        btn_xoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_xoaActionPerformed(evt);
+            }
+        });
 
         cbb_sanpham.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -131,11 +191,11 @@ public class JFrameAnh extends javax.swing.JFrame {
                         .addComponent(jLabel4))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(32, 32, 32)
-                        .addComponent(jButton1)
+                        .addComponent(btn_them)
                         .addGap(58, 58, 58)
-                        .addComponent(jButton2)
+                        .addComponent(btn_sua)
                         .addGap(69, 69, 69)
-                        .addComponent(jButton3))
+                        .addComponent(btn_xoa))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -176,9 +236,9 @@ public class JFrameAnh extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(btn_them)
+                    .addComponent(btn_sua)
+                    .addComponent(btn_xoa))
                 .addGap(24, 24, 24))
         );
 
@@ -225,11 +285,33 @@ public class JFrameAnh extends javax.swing.JFrame {
         Image image = imageIcon.getImage();
         Image newimg = image.getScaledInstance(lbl_anh.getWidth(), lbl_anh.getHeight(), java.awt.Image.SCALE_SMOOTH);
         imageIcon = new ImageIcon(newimg);
+
         lbl_anh.setIcon(imageIcon);
         txt_ma.setText(tenAnh);
         cbb_sanpham.setSelectedItem(tenSanPham);
         cbb_hoatdong.setSelectedItem(trangThai);
     }//GEN-LAST:event_tb_anhMouseClicked
+
+    private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
+        AnhSanPham asp = this.getForm();
+        this.anhService.create(asp);
+        this.loadTable();
+    }//GEN-LAST:event_btn_themActionPerformed
+
+    private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
+        int row = tb_anh.getSelectedRow();
+        String id = tb_anh.getValueAt(row, 1).toString();
+        AnhSanPham asp = this.getForm();
+        this.anhService.update(asp, getidanh(id));
+        this.loadTable();
+    }//GEN-LAST:event_btn_suaActionPerformed
+
+    private void btn_xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaActionPerformed
+        int row = tb_anh.getSelectedRow();
+        String id = tb_anh.getValueAt(row, 1).toString();
+        this.anhService.delete(getidanh(id));
+        this.loadTable();
+    }//GEN-LAST:event_btn_xoaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -267,11 +349,11 @@ public class JFrameAnh extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_sua;
+    private javax.swing.JButton btn_them;
+    private javax.swing.JButton btn_xoa;
     private javax.swing.JComboBox<String> cbb_hoatdong;
     private javax.swing.JComboBox<String> cbb_sanpham;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

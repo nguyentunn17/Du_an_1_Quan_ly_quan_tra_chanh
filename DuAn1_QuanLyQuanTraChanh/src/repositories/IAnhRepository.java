@@ -2,10 +2,11 @@ package repositories;
 
 import domainmodels.AnhSanPham;
 import java.util.ArrayList;
+import viewmodels.AnhViewModel;
 
 public interface IAnhRepository {
 
-    ArrayList<AnhSanPham> read();
+    ArrayList<AnhViewModel> read();
 
     void create(AnhSanPham asp);
 

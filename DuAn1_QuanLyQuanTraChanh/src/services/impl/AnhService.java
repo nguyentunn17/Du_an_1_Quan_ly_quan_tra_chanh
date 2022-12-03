@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import repositories.IAnhRepository;
 import repositories.impl.AnhRepository;
 import services.IAnhService;
+import viewmodels.AnhViewModel;
 
 /**
  *
@@ -23,23 +24,23 @@ public class AnhService implements IAnhService {
     }
 
     @Override
-    public ArrayList<AnhSanPham> read() {
+    public ArrayList<AnhViewModel> read() {
         return this.anhRepository.read();
     }
 
     @Override
     public void create(AnhSanPham asp) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.anhRepository.create(asp);
     }
 
     @Override
     public void update(AnhSanPham asp, String id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.anhRepository.update(asp, id);
     }
 
     @Override
     public void delete(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.anhRepository.delete(id);
     }
 
 }

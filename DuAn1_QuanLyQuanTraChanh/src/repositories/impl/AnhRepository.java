@@ -1,12 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package repositories.impl;
 
 import domainmodels.AnhSanPham;
-import domainmodels.SanPham;
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,29 +8,26 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import repositories.IAnhRepository;
+import viewmodels.AnhViewModel;
 
-/**
- *
- * @author Hung
- */
 public class AnhRepository implements IAnhRepository {
 
     @Override
-    public ArrayList<AnhSanPham> read() {
-        ArrayList<AnhSanPham> listsp = new ArrayList<>();
+    public ArrayList<AnhViewModel> read() {
+        ArrayList<AnhViewModel> listsp = new ArrayList<>();
         try {
             Connection conn = utilities.jdbcUtil.getConnection();
-            String query = "SELECT * FROM HINHANH";
+            String query = "SELECT hinhanh.Id,TenSP,TenHA,DuongDan,HINHANH.TrangThai FROM HINHANH inner join SANPHAM on HINHANH.IdSanPham=SANPHAM.Id";
             PreparedStatement ps = conn.prepareStatement(query);
             ps.execute();
             ResultSet rs = ps.getResultSet();
             while (rs.next()) {
                 String id = rs.getString("id");
-                String idSP = rs.getString("idSanpham");
-                String ten = rs.getString("tenha");
+                String tensp = rs.getString("tensp");
+                String tenha = rs.getString("tenha");
                 String duongDan = rs.getString("duongDan");
                 Integer trangThai = rs.getInt("trangThai");
-                AnhSanPham asp = new AnhSanPham(id, idSP, ten, duongDan, trangThai);
+                AnhViewModel asp = new AnhViewModel(id, tensp, tenha, duongDan, trangThai);
                 listsp.add(asp);
             }
         } catch (Exception ex) {
@@ -48,17 +39,53 @@ public class AnhRepository implements IAnhRepository {
 
     @Override
     public void create(AnhSanPham asp) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            Connection conn = utilities.jdbcUtil.getConnection();
+            String query = "INSERT INTO HINHANH(IDSanPham,TENHA,DUONGDAN,TRANGTHAI) VALUES (?,?,?,?)";
+
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setObject(1, asp.getTenAnh());
+            ps.setObject(2, asp.getIdSP());
+            ps.setObject(3, asp.getDuongDan());
+            ps.setObject(4, asp.getTrangThai());
+
+            ps.execute();
+        } catch (Exception ex) {
+            Logger.getLogger(AnhRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     @Override
     public void update(AnhSanPham asp, String id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            Connection conn = utilities.jdbcUtil.getConnection();
+            String query = "UPDATE HINHANH SET IDSANPHAM=? ,TENHA=? ,DUONGDAN=?,TRANGTHAI=? WHERE ID=?";
+            PreparedStatement ps = conn.prepareStatement(query);
+
+            ps.setObject(1, asp.getTenAnh());
+            ps.setObject(2, asp.getIdSP());
+            ps.setObject(3, asp.getDuongDan());
+            ps.setObject(4, asp.getTrangThai());
+            ps.setObject(5, id);
+
+            ps.execute();
+        } catch (Exception ex) {
+            Logger.getLogger(AnhRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public void delete(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            Connection conn = utilities.jdbcUtil.getConnection();
+            String query = "DELETE FROM HINHANH WHERE ID=?";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setObject(1, id);
+            ps.execute();
+        } catch (Exception ex) {
+            Logger.getLogger(AnhRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

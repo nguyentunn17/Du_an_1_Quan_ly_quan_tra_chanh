@@ -18,10 +18,9 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import services.ChucVuSevrice;
-import services.LuongSV;
 import services.QLNVServices;
 import services.impl.ChucVuImpl;
-import services.impl.LuongSVimpl;
+
 import services.impl.QLNVImpl;
 
 public class viewNhanVien extends javax.swing.JPanel {
@@ -30,7 +29,7 @@ public class viewNhanVien extends javax.swing.JPanel {
     private QLNVServices qLNVServices = new QLNVImpl();
     private ArrayList<NhanVien> list = new ArrayList<>();
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-    private LuongSV lsv = new LuongSVimpl();
+
     private ChucVuSevrice cvs = new ChucVuImpl();
     private DefaultComboBoxModel dcbm = new DefaultComboBoxModel();
 
@@ -93,7 +92,7 @@ public class viewNhanVien extends javax.swing.JPanel {
         String mk = tbNhanVien.getValueAt(row, 6).toString();
         String trangThai = tbNhanVien.getValueAt(row, 7).toString();
         String diaChi = tbNhanVien.getValueAt(row, 8).toString();
-        String anh = tbNhanVien.getValueAt(row, 9).toString();   
+        String anh = tbNhanVien.getValueAt(row, 9).toString();
         String idCV = "";
         for (ChucVu cv1 : cvs.listAll()) {
             if (cv.trim().equals(cv1.getTenCV().trim()) == true) {
@@ -632,9 +631,9 @@ public class viewNhanVien extends javax.swing.JPanel {
             } else if (gioiTinh.equals("Nữ")) {
                 rdNu.setSelected(true);
             }
-            String ns=tbNhanVien.getValueAt(row, 3).toString();
+            String ns = tbNhanVien.getValueAt(row, 3).toString();
             dscNgaySinh.setDate(sdf.parse(ns));
-            
+
             txtSDT.setText(tbNhanVien.getValueAt(row, 4).toString());
             cbbChucVu.setSelectedItem(tbNhanVien.getValueAt(row, 5));
             txtPass.setText(tbNhanVien.getValueAt(row, 6).toString());
@@ -653,7 +652,7 @@ public class viewNhanVien extends javax.swing.JPanel {
 
     private void btnChucVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChucVuActionPerformed
         // TODO add your handling code here:
-        ViewChucVu vcv=new ViewChucVu();
+        ViewChucVu vcv = new ViewChucVu();
         vcv.setVisible(true);
     }//GEN-LAST:event_btnChucVuActionPerformed
 

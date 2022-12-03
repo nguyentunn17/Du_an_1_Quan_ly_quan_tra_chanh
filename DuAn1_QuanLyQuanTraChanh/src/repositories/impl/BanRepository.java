@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import repositories.IBanRepository;
-import repositories.impl.reoimpl_luong;
 import utilities.jdbcUtil;
 
 /**
@@ -25,8 +24,9 @@ public class BanRepository implements IBanRepository {
     @Override
     public ArrayList<Ban> getAll() {
         ArrayList<Ban> listBan = new ArrayList<>();
+        Connection conn;
         try {
-            Connection conn = jdbcUtil.getConnection();
+            conn = jdbcUtil.getConnection();
             String sql = "select * from Ban";
             PreparedStatement pre = conn.prepareStatement(sql);
             pre.execute();
@@ -40,11 +40,10 @@ public class BanRepository implements IBanRepository {
                 Ban b = new Ban(id, maca, tenca, soNguoi, trangThai);
                 listBan.add(b);
             }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
         } catch (Exception ex) {
-            Logger.getLogger(reoimpl_luong.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BanRepository.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         return listBan;
     }
 
@@ -56,8 +55,8 @@ public class BanRepository implements IBanRepository {
             PreparedStatement ps = conn.prepareStatement(insert);
             ps.setString(1, b.getMaBan());
             ps.setString(2, b.getTenBan());
-            ps.setInt(3,b.getSoNguoi());
-            ps.setInt(4,b.getTrangThai());
+            ps.setInt(3, b.getSoNguoi());
+            ps.setInt(4, b.getTrangThai());
             ps.execute();
         } catch (Exception e) {
             e.printStackTrace();
