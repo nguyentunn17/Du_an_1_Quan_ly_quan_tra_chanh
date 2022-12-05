@@ -4,6 +4,8 @@
  */
 package viewmodels;
 
+import java.util.Date;
+
 /**
  *
  * @author Phuong
@@ -11,24 +13,19 @@ package viewmodels;
 public class HoaDonVM {
     private String mahd;
     private String ngayTao;
-    private String nguoitao;
-    private String tenkh;
-    private String diachi;
+    private Date nguoitao;
+
     private String tongtien;
-    private String sdtnguoinhan;
     private int trangthai;
 
     public HoaDonVM() {
     }
 
-    public HoaDonVM(String mahd, String ngayTao, String nguoitao, String tenkh, String diachi, String tongtien, String sdtnguoinhan, int trangthai) {
+    public HoaDonVM(String mahd, String ngayTao, Date nguoitao, String tongtien, int trangthai) {
         this.mahd = mahd;
         this.ngayTao = ngayTao;
         this.nguoitao = nguoitao;
-        this.tenkh = tenkh;
-        this.diachi = diachi;
         this.tongtien = tongtien;
-        this.sdtnguoinhan = sdtnguoinhan;
         this.trangthai = trangthai;
     }
 
@@ -48,28 +45,12 @@ public class HoaDonVM {
         this.ngayTao = ngayTao;
     }
 
-    public String getNguoitao() {
+    public Date getNguoitao() {
         return nguoitao;
     }
 
-    public void setNguoitao(String nguoitao) {
+    public void setNguoitao(Date nguoitao) {
         this.nguoitao = nguoitao;
-    }
-
-    public String getTenkh() {
-        return tenkh;
-    }
-
-    public void setTenkh(String tenkh) {
-        this.tenkh = tenkh;
-    }
-
-    public String getDiachi() {
-        return diachi;
-    }
-
-    public void setDiachi(String diachi) {
-        this.diachi = diachi;
     }
 
     public String getTongtien() {
@@ -80,15 +61,6 @@ public class HoaDonVM {
         this.tongtien = tongtien;
     }
 
-    public String getSdtnguoinhan() {
-        return sdtnguoinhan;
-    }
-
-    public void setSdtnguoinhan(String sdtnguoinhan) {
-        this.sdtnguoinhan = sdtnguoinhan;
-    }
-
-
     public int getTrangthai() {
         return trangthai;
     }
@@ -97,6 +69,7 @@ public class HoaDonVM {
         this.trangthai = trangthai;
     }
 
+   
     
     
     

@@ -50,10 +50,8 @@ public class viewHoaDon extends javax.swing.JPanel {
                 hdvm.getMahd(),
                 hdvm.getNgayTao(),
                 hdvm.getNguoitao(),
-                hdvm.getTenkh(),
-                hdvm.getDiachi(),
+
                 hdvm.getTongtien(),
-                hdvm.getSdtnguoinhan(),
                 hdvm.getTrangthai()
 
             };
@@ -84,7 +82,7 @@ public class viewHoaDon extends javax.swing.JPanel {
 
             },
             new String [] {
-                "MaHD", "NgayTao", "NguoiTao", "TenKH", "DiaChi", "TongTien", "SDTNguoiNhan", "PhanTramgg", "TrangThai"
+                "MaHD", "NgayTao", "NguoiTao", "TongTien", "TrangThai"
             }
         ));
         jScrollPane2.setViewportView(tb_hoadon);
